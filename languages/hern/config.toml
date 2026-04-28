@@ -1,0 +1,5 @@
+name = "Hern"
+grammar = "hern"
+path_suffixes = ["hern"]
+line_comments = ["// "]
+language_servers = ["hern-lsp"]

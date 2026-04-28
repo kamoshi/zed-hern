@@ -1,0 +1,16 @@
+id = "hern"
+name = "Hern"
+version = "0.0.1"
+schema_version = 1
+authors = ["Maciej Jur"]
+description = "Support for the Hern language"
+
+languages = ["hern"]
+
+[grammars.hern]
+repository = "https://git.kamoshi.org/kamov/tree-sitter-hern.git"
+rev = "main"
+
+[language_servers.hern-lsp]
+name = "Hern LSP"
+language = "Hern"

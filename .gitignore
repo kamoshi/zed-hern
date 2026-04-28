@@ -1,0 +1,15 @@
+# Ignore everything by default
+*
+
+!.gitignore
+
+!Cargo.toml
+!Cargo.lock
+
+!extension.toml
+
+!src/
+!src/**
+
+!languages/
+!languages/**
