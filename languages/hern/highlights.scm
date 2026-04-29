@@ -75,6 +75,12 @@
 (unit_expression) @constant.builtin
 (unit_type) @type.builtin
 
+; Variables and properties
+(identifier) @variable
+(field_initializer name: (identifier) @property)
+(field_access_expression field: (identifier) @property)
+(record_pattern_field field: (identifier) @property)
+
 ; Types
 (type_identifier) @type
 (type_variable) @type.parameter
@@ -83,21 +89,12 @@
 (type_field name: (identifier) @property)
 (type_def_stmt name: (identifier) @type.definition)
 (type_params (identifier) @type.parameter)
+(type_params (type_variable) @type.parameter)
+(type_bound var: (_) @type.parameter)
+(type_bound trait: (identifier) @type)
 (trait_stmt name: (identifier) @type)
 (trait_stmt param: (_) @type.parameter)
-
-; Functions and methods
-(fn_stmt name: (identifier) @function)
-(fn_stmt name: (operator) @function)
-(impl_method name: (identifier) @function.method)
-(impl_method name: (operator) @function.method)
-(trait_method name: (identifier) @function.method)
-(trait_method name: (operator) @function.method)
-(extern_stmt name: (identifier) @function)
-(call_expression function: (primary_expression (identifier) @function.call))
-(call_expression
-  function: (primary_expression
-    (field_access_expression field: (identifier) @function.method.call)))
+(impl_stmt trait: (identifier) @type)
 
 ; Constructors and variants
 (variant name: (identifier) @constructor)
@@ -111,11 +108,18 @@
 (record_rest_pattern binding: (identifier) @variable)
 (list_rest_pattern binding: (identifier) @variable)
 
-; Variables and properties
-(identifier) @variable
-(field_initializer name: (identifier) @property)
-(field_access_expression field: (identifier) @property)
-(record_pattern_field field: (identifier) @property)
+; Functions and methods
+(fn_stmt name: (identifier) @function)
+(fn_stmt name: (operator) @function)
+(impl_method name: (identifier) @function.method)
+(impl_method name: (operator) @function.method)
+(trait_method name: (identifier) @function.method)
+(trait_method name: (operator) @function.method)
+(extern_stmt name: (identifier) @function)
+(call_expression function: (primary_expression (identifier) @function.call))
+(call_expression
+  function: (primary_expression
+    (field_access_expression field: (identifier) @function.method.call)))
 
 ; Comments
 (comment) @comment
