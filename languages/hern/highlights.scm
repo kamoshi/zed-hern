@@ -1,7 +1,6 @@
 ; Keywords
 [
   "let"
-  "mut"
   "fn"
   "trait"
   "impl"
@@ -11,6 +10,9 @@
   "for"
   "in"
 ] @keyword
+
+; `mut` is a modifier — highlight it distinctly wherever it appears
+"mut" @keyword.modifier
 
 [
   "match"
@@ -95,6 +97,8 @@
 (trait_stmt name: (identifier) @type)
 (trait_stmt param: (_) @type.parameter)
 (impl_stmt trait: (identifier) @type)
+(impl_stmt trait: (type_identifier) @type)
+(impl_stmt trait: (type_apply name: (_) @type))
 
 ; Constructors and variants
 (variant name: (identifier) @constructor)
@@ -103,10 +107,15 @@
 
 ; Bindings
 (parameter pattern: (pattern (identifier) @variable.parameter))
+(parameter "mut" @keyword.modifier)
 (trait_parameter name: (identifier) @variable.parameter)
 (record_pattern_field binding: (identifier) @variable)
 (record_rest_pattern binding: (identifier) @variable)
 (list_rest_pattern binding: (identifier) @variable)
+
+; Spread syntax in array and record expressions
+(array_element ".." @punctuation.special)
+(record_field_or_spread ".." @punctuation.special)
 
 ; Functions and methods
 (fn_stmt name: (identifier) @function)
