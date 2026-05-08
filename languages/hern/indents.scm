@@ -1,4 +1,5 @@
 ; Explicit bracket delimiters
+(do_expression "{" @start "}" @end) @indent
 (block "{" @start "}" @end) @indent
 (record_expression "{" @start "}" @end) @indent
 (record_pattern "{" @start "}" @end) @indent
@@ -32,6 +33,7 @@
 ; Multiline declarations and expressions
 (type_def_stmt "=" @start) @indent
 (let_stmt "=" @start) @indent
+(do_bind_statement "<-" @start) @indent
 (fn_stmt "->" @start) @indent
 (lambda_expression "->" @start) @indent
 (if_expression "else" @start) @indent

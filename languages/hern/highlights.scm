@@ -9,6 +9,7 @@
   "import"
   "for"
   "in"
+  "do"
 ] @keyword
 
 ; `mut` is a modifier — highlight it distinctly wherever it appears
@@ -32,6 +33,10 @@
 
 (attribute "inline" @attribute)
 (extern_attribute "template" @attribute)
+(inner_attribute name: (identifier) @attribute)
+
+; Hashbang and comments
+(hashbang) @comment
 
 ; Operators
 [
@@ -47,6 +52,7 @@
   ".."
   "!"
   "="
+  "<-"
 ] @operator
 
 (operator) @operator
@@ -80,6 +86,7 @@
 ; Variables and properties
 (identifier) @variable
 (field_initializer name: (identifier) @property)
+(record_field_or_spread shorthand: (identifier) @property)
 (field_access_expression field: (identifier) @property)
 (record_pattern_field field: (identifier) @property)
 
@@ -129,6 +136,9 @@
 (call_expression
   function: (primary_expression
     (field_access_expression field: (identifier) @function.method.call)))
+
+; do-bind pattern variable
+(do_bind_statement pattern: (pattern (identifier) @variable.parameter))
 
 ; Comments
 (comment) @comment
