@@ -5,7 +5,8 @@
 (record_pattern "{" @start "}" @end) @indent
 (type_record "{" @start "}" @end) @indent
 (trait_stmt "{" @start "}" @end) @indent
-(impl_stmt "{" @start "}" @end) @indent
+(trait_impl_stmt "{" @start "}" @end) @indent
+(inherent_impl_stmt "{" @start "}" @end) @indent
 (match_expression "{" @start "}" @end) @indent
 (array_expression "[" @start "]" @end) @indent
 (list_pattern "[" @start "]" @end) @indent
@@ -13,7 +14,6 @@
 (parameters "(" @start ")" @end) @indent
 (trait_parameters "(" @start ")" @end) @indent
 (type_params "(" @start ")" @end) @indent
-(type_bounds "[" @start "]" @end) @indent
 (type_apply "(" @start ")" @end) @indent
 (type_fn "(" @start ")" @end) @indent
 (tuple_expression "(" @start ")" @end) @indent
@@ -35,5 +35,9 @@
 (let_stmt "=" @start) @indent
 (do_bind_statement "<-" @start) @indent
 (fn_stmt "->" @start) @indent
+(fn_stmt (where_clause "where" @start)) @indent
+(trait_impl_stmt (where_clause "where" @start)) @indent
+(inherent_impl_stmt (where_clause "where" @start)) @indent
+(inherent_impl_method (where_clause "where" @start)) @indent
 (lambda_expression "->" @start) @indent
 (if_expression "else" @start) @indent

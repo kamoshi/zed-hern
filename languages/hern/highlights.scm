@@ -7,6 +7,7 @@
   "type"
   "extern"
   "import"
+  "where"
   "for"
   "in"
   "do"
@@ -82,6 +83,7 @@
 (bool) @boolean
 (unit_expression) @constant.builtin
 (unit_type) @type.builtin
+(never_type) @type.builtin
 
 ; Variables and properties
 (identifier) @variable
@@ -103,9 +105,9 @@
 (type_bound trait: (identifier) @type)
 (trait_stmt name: (identifier) @type)
 (trait_stmt param: (_) @type.parameter)
-(impl_stmt trait: (identifier) @type)
-(impl_stmt trait: (type_identifier) @type)
-(impl_stmt trait: (type_apply name: (_) @type))
+(trait_impl_stmt trait: (identifier) @type)
+(trait_impl_stmt trait: (type_identifier) @type)
+(trait_impl_stmt trait: (type_apply name: (_) @type))
 
 ; Constructors and variants
 (variant name: (identifier) @constructor)
@@ -127,8 +129,9 @@
 ; Functions and methods
 (fn_stmt name: (identifier) @function)
 (fn_stmt name: (operator) @function)
-(impl_method name: (identifier) @function.method)
-(impl_method name: (operator) @function.method)
+(inherent_impl_method name: (identifier) @function.method)
+(trait_impl_method name: (identifier) @function.method)
+(trait_impl_method name: (operator) @function.method)
 (trait_method name: (identifier) @function.method)
 (trait_method name: (operator) @function.method)
 (extern_stmt name: (identifier) @function)
