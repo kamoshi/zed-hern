@@ -4,6 +4,7 @@
 (record_expression "{" @start "}" @end) @indent
 (record_pattern "{" @start "}" @end) @indent
 (type_record "{" @start "}" @end) @indent
+(associated_type_record "{" @start "}" @end) @indent
 (trait_stmt "{" @start "}" @end) @indent
 (trait_impl_stmt "{" @start "}" @end) @indent
 (inherent_impl_stmt "{" @start "}" @end) @indent
@@ -11,17 +12,22 @@
 (array_expression "[" @start "]" @end) @indent
 (list_pattern "[" @start "]" @end) @indent
 (type_array "[" @start "]" @end) @indent
+(associated_type_array "[" @start "]" @end) @indent
 (parameters "(" @start ")" @end) @indent
 (trait_parameters "(" @start ")" @end) @indent
 (type_params "(" @start ")" @end) @indent
 (type_apply "(" @start ")" @end) @indent
 (type_fn "(" @start ")" @end) @indent
+(associated_type_apply "(" @start ")" @end) @indent
+(associated_type_fn "(" @start ")" @end) @indent
 (tuple_expression "(" @start ")" @end) @indent
 (tuple_pattern "(" @start ")" @end) @indent
 (type_tuple "(" @start ")" @end) @indent
+(associated_type_tuple "(" @start ")" @end) @indent
 (parenthesized_expression "(" @start ")" @end) @indent
 (parenthesized_pattern "(" @start ")" @end) @indent
 (parenthesized_type "(" @start ")" @end) @indent
+(associated_parenthesized_type "(" @start ")" @end) @indent
 
 ; Match arms
 (match_arm "->" @start) @indent

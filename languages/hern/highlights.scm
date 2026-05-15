@@ -51,6 +51,8 @@
   "-"
   "*"
   ".."
+  "..="
+  "::"
   "!"
   "="
   "<-"
@@ -104,10 +106,22 @@
 (type_bound var: (_) @type.parameter)
 (type_bound trait: (identifier) @type)
 (trait_stmt name: (identifier) @type)
-(trait_stmt param: (_) @type.parameter)
+(trait_params param: (identifier) @type.parameter)
+(trait_params dependent: (identifier) @type.parameter)
 (trait_impl_stmt trait: (identifier) @type)
 (trait_impl_stmt trait: (type_identifier) @type)
 (trait_impl_stmt trait: (type_apply name: (_) @type))
+(trait_impl_target arg: (identifier) @type)
+(trait_impl_target dependent: (identifier) @type)
+
+; Associated type targets, e.g. `Foo([int])::bar` and `Functor(Result(_, string))::map`
+(associated_type_hole) @type.builtin
+(associated_type_apply name: (identifier) @type)
+(associated_type_field name: (identifier) @property)
+(associated_type_fn_parameter "mut" @keyword.modifier)
+(associated_type_fn_return "mut" @keyword.modifier)
+(associated_type_mut "mut" @keyword.modifier)
+(associated_type (identifier) @type)
 
 ; Constructors and variants
 (variant name: (identifier) @constructor)
@@ -122,8 +136,7 @@
 (record_rest_pattern binding: (identifier) @variable)
 (list_rest_pattern binding: (identifier) @variable)
 
-; Spread syntax in array and record expressions
-(array_element ".." @punctuation.special)
+; Spread syntax in record expressions
 (record_field_or_spread ".." @punctuation.special)
 
 ; Functions and methods
@@ -139,6 +152,10 @@
 (call_expression
   function: (primary_expression
     (field_access_expression field: (identifier) @function.method.call)))
+(call_expression
+  function: (primary_expression
+    (associated_access_expression member: (identifier) @function.method.call)))
+(associated_access_expression member: (identifier) @function.method)
 
 ; do-bind pattern variable
 (do_bind_statement pattern: (pattern (identifier) @variable.parameter))
