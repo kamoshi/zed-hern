@@ -47,9 +47,15 @@
   "&&"
   "=="
   "!="
+  "<"
+  ">"
+  "<="
+  ">="
   "+"
   "-"
   "*"
+  "/"
+  "%"
   ".."
   "..="
   "::"
@@ -103,7 +109,10 @@
 (type_def_stmt name: (identifier) @type.definition)
 (type_params (identifier) @type.parameter)
 (type_params (type_variable) @type.parameter)
-(type_bound var: (_) @type.parameter)
+(type_bound arg: (identifier) @type.parameter)
+(type_bound arg: (type_variable) @type.parameter)
+(type_bound dependent: (identifier) @type.parameter)
+(type_bound dependent: (type_variable) @type.parameter)
 (type_bound trait: (identifier) @type)
 (trait_stmt name: (identifier) @type)
 (trait_params param: (identifier) @type.parameter)
