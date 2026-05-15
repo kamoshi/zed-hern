@@ -13,3 +13,6 @@
 
 !languages/
 !languages/**
+
+!snippets/
+!snippets/**
