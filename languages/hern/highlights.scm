@@ -95,6 +95,9 @@
 
 ; Literals
 (string) @string
+(interpolated_string) @string
+(interpolation_text) @string
+(string_escape) @string.escape
 (number) @number
 (number_pattern (number) @number)
 (range_pattern (number) @number)
