@@ -8,6 +8,7 @@
 (trait_stmt "{" @start "}" @end) @indent
 (trait_impl_stmt "{" @start "}" @end) @indent
 (inherent_impl_stmt "{" @start "}" @end) @indent
+(test_stmt "{" @start "}" @end) @indent
 (match_expression "{" @start "}" @end) @indent
 (array_expression "[" @start "]" @end) @indent
 (list_pattern "[" @start "]" @end) @indent
@@ -16,6 +17,7 @@
 (parameters "(" @start ")" @end) @indent
 (trait_parameters "(" @start ")" @end) @indent
 (type_params "(" @start ")" @end) @indent
+(attribute_arguments "(" @start ")" @end) @indent
 (type_apply "(" @start ")" @end) @indent
 (type_fn "(" @start ")" @end) @indent
 (associated_type_apply "(" @start ")" @end) @indent
@@ -38,6 +40,7 @@
 
 ; Multiline declarations and expressions
 (type_def_stmt "=" @start) @indent
+(type_alias_stmt "=" @start) @indent
 (let_stmt "=" @start) @indent
 (do_bind_statement "<-" @start) @indent
 (fn_stmt "->" @start) @indent

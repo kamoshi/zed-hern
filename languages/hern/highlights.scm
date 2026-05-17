@@ -5,6 +5,9 @@
   "trait"
   "impl"
   "type"
+  "alias"
+  "test"
+  "and"
   "extern"
   "import"
   "where"
@@ -32,7 +35,11 @@
   "infixr"
 ] @keyword
 
+(attribute name: (_) @attribute)
 (attribute "inline" @attribute)
+(attribute "test" @attribute)
+(attribute "derive" @attribute)
+(attribute_arguments argument: (identifier) @type)
 (extern_attribute "template" @attribute)
 (inner_attribute name: (identifier) @attribute)
 
@@ -86,6 +93,8 @@
 ; Literals
 (string) @string
 (number) @number
+(number_pattern (number) @number)
+(range_pattern (number) @number)
 (bool) @boolean
 (unit_expression) @constant.builtin
 (unit_type) @type.builtin
@@ -105,6 +114,7 @@
 (type_rest) @punctuation.special
 (type_field name: (identifier) @property)
 (type_def_stmt name: (identifier) @type.definition)
+(type_alias_stmt name: (identifier) @type.definition)
 (type_params (identifier) @type.parameter)
 (type_params (type_variable) @type.parameter)
 (type_bound arg: (identifier) @type.parameter)
