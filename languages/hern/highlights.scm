@@ -16,7 +16,7 @@
   "do"
 ] @keyword
 
-; `mut` is a modifier — highlight it distinctly wherever it appears
+; `mut` is a modifier; highlight it distinctly wherever it appears
 "mut" @keyword.modifier
 
 [
@@ -35,6 +35,8 @@
   "infixr"
 ] @keyword
 
+; The generic named-child capture handles custom attributes; literal captures
+; below handle contextual attribute names such as `inline`, `test`, and `derive`.
 (attribute name: (_) @attribute)
 (attribute "inline" @attribute)
 (attribute "test" @attribute)
@@ -61,6 +63,7 @@
   "+"
   "-"
   "*"
+  "/"
   ".."
   "..="
   "::"
@@ -122,6 +125,19 @@
 (type_bound dependent: (identifier) @type.parameter)
 (type_bound dependent: (type_variable) @type.parameter)
 (type_bound trait: (identifier) @type)
+(parameter type: (identifier) @type)
+(let_stmt type: (identifier) @type)
+(do_bind_statement type: (identifier) @type)
+(return_type type: (identifier) @type)
+(type_field type: (identifier) @type)
+(type_apply name: (identifier) @type)
+(type_apply name: (type_identifier) @type)
+(type_array (identifier) @type)
+(type_fn_parameter type: (identifier) @type)
+(type_fn_return type: (identifier) @type)
+(type_mut type: (identifier) @type)
+(type_tuple (identifier) @type)
+(parenthesized_type (identifier) @type)
 (trait_stmt name: (identifier) @type)
 (trait_params param: (identifier) @type.parameter)
 (trait_params dependent: (identifier) @type.parameter)
@@ -135,9 +151,13 @@
 (associated_type_hole) @type.builtin
 (associated_type_apply name: (identifier) @type)
 (associated_type_field name: (identifier) @property)
-(associated_type_fn_parameter "mut" @keyword.modifier)
-(associated_type_fn_return "mut" @keyword.modifier)
-(associated_type_mut "mut" @keyword.modifier)
+(associated_type_field type: (associated_type (identifier) @type))
+(associated_type_fn_parameter type: (associated_type (identifier) @type))
+(associated_type_fn_return type: (associated_type (identifier) @type))
+(associated_type_mut type: (associated_type (identifier) @type))
+(associated_type_array (associated_type (identifier) @type))
+(associated_type_tuple (associated_type (identifier) @type))
+(associated_parenthesized_type (associated_type (identifier) @type))
 (associated_type (identifier) @type)
 
 ; Constructors and variants
@@ -147,7 +167,6 @@
 
 ; Bindings
 (parameter pattern: (pattern (identifier) @variable.parameter))
-(parameter "mut" @keyword.modifier)
 (trait_parameter name: (identifier) @variable.parameter)
 (record_pattern_field binding: (identifier) @variable)
 (record_rest_pattern binding: (identifier) @variable)
@@ -164,7 +183,8 @@
 (trait_impl_method name: (operator) @function.method)
 (trait_method name: (identifier) @function.method)
 (trait_method name: (operator) @function.method)
-(extern_stmt name: (identifier) @function)
+(extern_stmt name: (identifier) @variable)
+(associated_access_expression member: (identifier) @function.method)
 (call_expression function: (primary_expression (identifier) @function.call))
 (call_expression
   function: (primary_expression
@@ -172,10 +192,9 @@
 (call_expression
   function: (primary_expression
     (associated_access_expression member: (identifier) @function.method.call)))
-(associated_access_expression member: (identifier) @function.method)
 
 ; do-bind pattern variable
-(do_bind_statement pattern: (pattern (identifier) @variable.parameter))
+(do_bind_statement pattern: (pattern (identifier) @variable))
 
 ; Comments
 (comment) @comment
