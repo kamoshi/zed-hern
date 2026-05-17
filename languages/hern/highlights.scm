@@ -95,7 +95,12 @@
 
 ; Literals
 (string) @string
-(interpolated_string) @string
+(interpolated_string
+  "$\"" @punctuation.special
+  "\"" @punctuation.special)
+(interpolation
+  "${" @punctuation.special
+  "}" @punctuation.special)
 (interpolation_text) @string
 (string_escape) @string.escape
 (number) @number
