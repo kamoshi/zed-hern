@@ -139,6 +139,17 @@
 (field_access_expression field: (identifier) @property)
 (record_pattern_field field: (identifier) @property)
 
+; Macro identifiers need to be captured after the generic identifier rule.
+(macro_def_stmt name: (identifier) @function.macro)
+(macro_helper_attrs name: (identifier) @attribute)
+(macro_invocation name: (identifier) @function.macro.call)
+(macro_metavariable name: (identifier) @variable.parameter)
+(macro_metavariable_use name: (identifier) @variable.parameter)
+(macro_metavariable_operation name: (identifier) @function.macro)
+(attribute
+  "derive"
+  (attribute_arguments argument: (identifier) @function.macro.call))
+
 ; Types
 (type_identifier) @type
 (type_variable) @type.parameter
