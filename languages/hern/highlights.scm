@@ -9,6 +9,7 @@
   "test"
   "and"
   "extern"
+  "macro"
   "import"
   "where"
   "for"
@@ -45,6 +46,24 @@
 (extern_attribute "template" @attribute)
 (inner_attribute name: (identifier) @attribute)
 
+; Macros
+(macro_def_stmt name: (identifier) @function.macro)
+(macro_def_stmt "derive" @keyword)
+(macro_helper_attrs "attributes" @keyword)
+(macro_helper_attrs name: (identifier) @attribute)
+(macro_rule "=>" @operator)
+(macro_invocation name: (identifier) @function.macro.call)
+(macro_invocation "!" @operator)
+(macro_metavariable "$" @punctuation.special)
+(macro_metavariable name: (identifier) @variable.parameter)
+(macro_metavariable fragment: (_) @type.builtin)
+(macro_metavariable_use "$" @punctuation.special)
+(macro_metavariable_use name: (identifier) @variable.parameter)
+(macro_metavariable_operation "$" @punctuation.special)
+(macro_metavariable_operation name: (identifier) @function.macro)
+(macro_repetition "$" @punctuation.special)
+(macro_repetition operator: (_) @operator)
+
 ; Hashbang and comments
 (hashbang) @comment
 
@@ -70,6 +89,8 @@
   "!"
   "="
   "<-"
+  "=>"
+  "$"
 ] @operator
 
 (operator) @operator

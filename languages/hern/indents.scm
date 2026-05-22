@@ -9,6 +9,10 @@
 (trait_impl_stmt "{" @start "}" @end) @indent
 (inherent_impl_stmt "{" @start "}" @end) @indent
 (test_stmt "{" @start "}" @end) @indent
+(macro_rule_block "{" @start "}" @end) @indent
+(macro_brace_tree "{" @start "}" @end) @indent
+(macro_bracket_tree "[" @start "]" @end) @indent
+(macro_paren_tree "(" @start ")" @end) @indent
 (match_expression "{" @start "}" @end) @indent
 (array_expression "[" @start "]" @end) @indent
 (list_pattern "[" @start "]" @end) @indent
