@@ -10,7 +10,7 @@
   "and"
   "extern"
   "macro"
-  "import"
+  "use"
   "where"
   "for"
   "in"
@@ -19,6 +19,7 @@
 
 ; `mut` is a modifier; highlight it distinctly wherever it appears
 "mut" @keyword.modifier
+"pub" @keyword.modifier
 
 [
   "match"
@@ -155,6 +156,9 @@
 (type_variable) @type.parameter
 (type_hole) @type.builtin
 (type_rest) @punctuation.special
+(qualified_type
+  module: (identifier) @namespace
+  name: (type_identifier) @type)
 (type_field name: (identifier) @property)
 (type_def_stmt name: (identifier) @type.definition)
 (type_alias_stmt name: (identifier) @type.definition)
@@ -190,6 +194,7 @@
 ; Associated type targets, e.g. `Foo([int])::bar` and `Functor(Result(_, string))::map`
 (associated_type_hole) @type.builtin
 (associated_type_apply name: (identifier) @type)
+(associated_type_apply name: (qualified_type) @type)
 (associated_type_field name: (identifier) @property)
 (associated_type_field type: (associated_type (identifier) @type))
 (associated_type_fn_parameter type: (associated_type (identifier) @type))
@@ -199,6 +204,35 @@
 (associated_type_tuple (associated_type (identifier) @type))
 (associated_parenthesized_type (associated_type (identifier) @type))
 (associated_type (identifier) @type)
+
+; Imports
+(use_stmt "use" @keyword)
+(pub_use_stmt
+  "pub" @keyword.modifier
+  "use" @keyword)
+(use_path namespace: (identifier) @namespace)
+(use_path segment: (identifier) @namespace)
+(use_alias_binding
+  "as" @keyword
+  alias: (identifier) @namespace)
+(use_selective_binding
+  "." @punctuation.delimiter)
+(use_value_item name: (identifier) @variable)
+(use_type_item
+  "type" @keyword
+  name: (identifier) @type)
+(use_trait_item
+  "trait" @keyword
+  name: (identifier) @type)
+(use_value_item
+  "as" @keyword
+  alias: (identifier) @variable)
+(use_type_item
+  "as" @keyword
+  alias: (identifier) @type)
+(use_trait_item
+  "as" @keyword
+  alias: (identifier) @type)
 
 ; Constructors and variants
 (variant name: (identifier) @constructor)
@@ -225,6 +259,10 @@
 (trait_method name: (operator) @function.method)
 (extern_stmt name: (identifier) @variable)
 (associated_access_expression member: (identifier) @function.method)
+(qualified_associated_access_expression
+  module: (identifier) @namespace
+  type: (type_identifier) @type
+  member: (identifier) @function.method)
 (call_expression function: (primary_expression (identifier) @function.call))
 (call_expression
   function: (primary_expression
@@ -232,6 +270,9 @@
 (call_expression
   function: (primary_expression
     (associated_access_expression member: (identifier) @function.method.call)))
+(call_expression
+  function: (primary_expression
+    (qualified_associated_access_expression member: (identifier) @function.method.call)))
 
 ; do-bind pattern variable
 (do_bind_statement pattern: (pattern (identifier) @variable))

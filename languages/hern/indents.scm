@@ -5,6 +5,7 @@
 (record_pattern "{" @start "}" @end) @indent
 (type_record "{" @start "}" @end) @indent
 (associated_type_record "{" @start "}" @end) @indent
+(use_selective_binding "{" @start "}" @end) @indent
 (trait_stmt "{" @start "}" @end) @indent
 (trait_impl_stmt "{" @start "}" @end) @indent
 (inherent_impl_stmt "{" @start "}" @end) @indent
